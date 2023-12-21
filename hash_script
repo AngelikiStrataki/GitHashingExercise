@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Get the 4-digit integer from command-line argument
+input_integer=$1
+
+# Check if the input is provided
+if [ -z "$input_integer" ]; then
+    echo "Usage: $0 if [ -z "$input_integer" ]; then
+    echo "Usage: $0 <4-digit-integer>"
+    exit 1
+fi"
+    exit 1
+fi
+
+# Check if the input is a 4-digit integer
+if ! [[ $input_integer =~ ^[0-9]{4}$ ]]; then
+    echo "Error: Input should be a 4-digit integer."
+    exit 1
+fi
+
+# Hash the input using SHA-256
+hashed_value=$(echo -n "$input_integer" | sha256sum | awk '{print $1}')
+
+# Print the hashed value
+echo "Hashed value: $hashed_value"
